@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arindam Halder - Healthcare Leader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for smooth scrolling and animations */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .section {
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background-color: #3b82f6;
+            transition: width 1s ease-in-out;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .role-text {
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .role-text.active {
+            opacity: 1;
+        }
+        
+        .pronouns {
+            font-size: 0.8rem;
+            vertical-align: super;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo/Name -->
+            <div class="text-2xl font-bold text-blue-600 animate-fade-in">
+                <span class="text-gray-900">Arindam</span> Halder <span class="pronouns">(He/Him/His)</span>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="hidden md:flex space-x-8 animate-fade-in delay-100">
+                <a href="#about" class="nav-link active-nav text-gray-700 hover:text-blue-600 transition">About</a>
+                <a href="#skills" class="nav-link text-gray-700 hover:text-blue-600 transition">Skills</a>
+                <a href="#experience" class="nav-link text-gray-700 hover:text-blue-600 transition">Experience</a>
+                <a href="#education" class="nav-link text-gray-700 hover:text-blue-600 transition">Education</a>
+                <a href="#blog" class="nav-link text-gray-700 hover:text-blue-600 transition">Blog</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 transition">Contact</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <div class="md:hidden animate-fade-in delay-100">
+                <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">About</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Skills</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Experience</a>
+                <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Education</a>
+                <a href="#blog" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Blog</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="about" class="section flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
+                        Hi, I'm <span class="text-blue-600">Arindam Halder</span>
+                    </h1>
+                    <div class="text-2xl md:text-3xl text-gray-600 mb-6 h-12 relative">
+                        <div class="role-text active">Healthcare Leader</div>
+                        <div class="role-text">CXO Advisor</div>
+                        <div class="role-text">Design Thinker</div>
+                        <div class="role-text">Transformation Champion</div>
+                        <div class="role-text">Architect</div>
+                        <div class="role-text">AI Champion</div>
+                    </div>
+                    <p class="text-gray-600 mb-8 max-w-lg">
+                        I drive innovation and transformation in healthcare through strategic leadership, design thinking, and cutting-edge technology solutions.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#experience" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition">
+                            View My Experience
+                        </a>
+                        <a href="#contact" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg shadow-md transition">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate-fade-in delay-100">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                        <img src="Images/Profile.jfif" 
+                             alt="Arindam Halder" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="section py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
+                    My <span class="text-blue-600">Skills</span>
+                </h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                    I bring a diverse set of skills to drive healthcare transformation and digital innovation.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Leadership & Strategy</h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700">Healthcare Leadership</span>
+                                    <span class="text-gray-600">95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700">Digital Transformation</span>
+                                    <span class="text-gray-600">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700">Strategic Planning</span>
+                                    <span class="text-gray-600">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700">Change Management</span>
+                                    <span class="text-gray-600">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Technical & Innovation</h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700">Healthcare IT Architecture</span>
+                                    <span class="text-gray-600">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700">AI in Healthcare</span>
+                                    <span class="text-gray-600">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700">Design Thinking</span>
+                                    <span class="text-gray-600">88%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-gray-700">Data Analytics</span>
+                                    <span class="text-gray-600">82%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 82%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-16">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-8 text-center">Areas of Expertise</h3>
+                    
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
+                            <i class="fas fa-hospital text-4xl text-blue-500 mb-2"></i>
+                            <span class="text-sm text-gray-700">Healthcare</span>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
+                            <i class="fas fa-brain text-4xl text-purple-500 mb-2"></i>
+                            <span class="text-sm text-gray-700">AI/ML</span>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
+                            <i class="fas fa-project-diagram text-4xl text-green-500 mb-2"></i>
+                            <span class="text-sm text-gray-700">Strategy</span>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
+                            <i class="fas fa-lightbulb text-4xl text-yellow-500 mb-2"></i>
+                            <span class="text-sm text-gray-700">Innovation</span>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
+                            <i class="fas fa-chart-line text-4xl text-red-500 mb-2"></i>
+                            <span class="text-sm text-gray-700">Analytics</span>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
+                            <i class="fas fa-users text-4xl text-indigo-500 mb-2"></i>
+                            <span class="text-sm text-gray-700">Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section id="experience" class="section py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
+                    My <span class="text-blue-600">Experience</span>
+                </h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                    A track record of driving transformation and delivering results in healthcare organizations.
+                </p>
+                
+                <div class="max-w-3xl mx-auto">
+                    <div class="relative">
+                        <!-- Timeline line -->
+                        <div class="absolute left-1/2 w-1 h-full bg-gray-200 transform -translate-x-1/2"></div>
+                        
+                        <!-- Timeline items -->
+                        <div class="space-y-8">
+                            <!-- Item 1 -->
+                            <div class="relative">
+                                <div class="bg-white p-6 rounded-lg shadow-md relative z-10 md:w-1/2 ml-auto">
+                                    <div class="flex items-center mb-2">
+                                        <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                            <i class="fas fa-briefcase text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-gray-800">Chief Transformation Officer</h3>
+                                            <p class="text-gray-600">ABC Healthcare System</p>
+                                            <p class="text-sm text-gray-500">2020 - Present</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700">
+                                        Led digital transformation initiatives across 25 hospitals, resulting in 30% operational efficiency gains and improved patient outcomes.
+                                    </p>
+                                </div>
+                                <div class="absolute top-6 left-1/2 w-4 h-4 bg-blue-600 rounded-full transform -translate-x-1/2"></div>
+                            </div>
+                            
+                            <!-- Item 2 -->
+                            <div class="relative">
+                                <div class="bg-white p-6 rounded-lg shadow-md relative z-10 md:w-1/2">
+                                    <div class="flex items-center mb-2">
+                                        <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                            <i class="fas fa-briefcase text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-gray-800">VP of Digital Innovation</h3>
+                                            <p class="text-gray-600">XYZ Medical Group</p>
+                                            <p class="text-sm text-gray-500">2016 - 2020</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700">
+                                        Spearheaded AI implementation projects that reduced diagnostic errors by 22% and improved patient satisfaction scores.
+                                    </p>
+                                </div>
+                                <div class="absolute top-6 left-1/2 w-4 h-4 bg-blue-600 rounded-full transform -translate-x-1/2"></div>
+                            </div>
+                            
+                            <!-- Item 3 -->
+                            <div class="relative">
+                                <div class="bg-white p-6 rounded-lg shadow-md relative z-10 md:w-1/2 ml-auto">
+                                    <div class="flex items-center mb-2">
+                                        <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                            <i class="fas fa-briefcase text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-gray-800">Director of IT Strategy</h3>
+                                            <p class="text-gray-600">Regional Health Network</p>
+                                            <p class="text-sm text-gray-500">2012 - 2016</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-700">
+                                        Architected and implemented system-wide EHR integration that saved $12M annually in operational costs.
+                                    </p>
+                                </div>
+                                <div class="absolute top-6 left-1/2 w-4 h-4 bg-blue-600 rounded-full transform -translate-x-1/2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section id="education" class="section py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
+                    My <span class="text-blue-600">Education</span>
+                </h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                    The foundation of my expertise in healthcare leadership and technology.
+                </p>
+                
+                <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Education 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">MBA in Healthcare Management</h3>
+                                <p class="text-gray-600">Harvard Business School</p>
+                                <p class="text-sm text-gray-500">2010 - 2012</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">
+                            Focused on healthcare innovation and leadership strategies for complex organizations.
+                        </p>
+                    </div>
+                    
+                    <!-- Education 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">MS in Health Informatics</h3>
+                                <p class="text-gray-600">Stanford University</p>
+                                <p class="text-sm text-gray-500">2008 - 2010</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">
+                            Specialized in healthcare data systems and digital transformation methodologies.
+                        </p>
+                    </div>
+                    
+                    <!-- Education 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">MD (Medical Doctor)</h3>
+                                <p class="text-gray-600">All India Institute of Medical Sciences</p>
+                                <p class="text-sm text-gray-500">2002 - 2008</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">
+                            Clinical training with emphasis on evidence-based medicine and healthcare systems.
+                        </p>
+                    </div>
+                    
+                    <!-- Education 4 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-certificate text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">Executive Education</h3>
+                                <p class="text-gray-600">MIT Sloan, Wharton, INSEAD</p>
+                                <p class="text-sm text-gray-500">Various</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">
+                            Certificates in AI Strategy, Design Thinking, and Digital Transformation Leadership.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Blog Section -->
+        <section id="blog" class="section py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
+                    My <span class="text-blue-600">Blog</span>
+                </h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                    Insights on healthcare transformation, leadership, and emerging technologies.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="AI in Healthcare" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span>June 15, 2023</span>
+                                <span class="mx-2">•</span>
+                                <span>8 min read</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">The Future of AI in Healthcare Delivery</h3>
+                            <p class="text-gray-600 mb-4">
+                                Exploring how artificial intelligence is transforming patient care pathways and operational efficiencies.
+                            </p>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">
+                                Read More →
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Digital Transformation" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span>April 28, 2023</span>
+                                <span class="mx-2">•</span>
+                                <span>6 min read</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Overcoming Resistance to Digital Transformation</h3>
+                            <p class="text-gray-600 mb-4">
+                                Strategies for healthcare leaders to drive successful technology adoption across organizations.
+                            </p>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">
+                                Read More →
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 3 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Design Thinking" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span>March 10, 2023</span>
+                                <span class="mx-2">•</span>
+                                <span>10 min read</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Applying Design Thinking to Healthcare Challenges</h3>
+                            <p class="text-gray-600 mb-4">
+                                How human-centered design approaches can lead to breakthrough solutions in patient care.
+                            </p>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">
+                                Read More →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg shadow-md transition">
+                        View All Articles
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="section py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
+                    Get In <span class="text-blue-600">Touch</span>
+                </h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                    Interested in discussing healthcare transformation opportunities? Reach out for advisory services or speaking engagements.
+                </p>
+                
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="md:w-1/2">
+                        <form class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" id="name" 
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" 
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                <input type="text" id="subject" 
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="message" rows="5" 
+                                          class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="md:w-1/2">
+                        <div class="bg-gray-50 p-8 rounded-xl shadow-lg h-full">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Location</h4>
+                                        <p class="text-gray-600">San Francisco, CA / Global Advisory</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-envelope text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Email</h4>
+                                        <p class="text-gray-600">arindam.halder@example.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-phone-alt text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Phone</h4>
+                                        <p class="text-gray-600">+1 (555) 987-6543</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                        <i class="fas fa-calendar-alt text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Advisory Hours</h4>
+                                        <p class="text-gray-600">By appointment only</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <h4 class="font-semibold text-gray-800 mb-4">Connect With Me</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="bg-blue-100 hover:bg-blue-200 p-3 rounded-full text-blue-600 transition">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" class="bg-blue-100 hover:bg-blue-200 p-3 rounded-full text-blue-600 transition">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="bg-blue-100 hover:bg-blue-200 p-3 rounded-full text-blue-600 transition">
+                                        <i class="fab fa-medium"></i>
+                                    </a>
+                                    <a href="#" class="bg-blue-100 hover:bg-blue-200 p-3 rounded-full text-blue-600 transition">
+                                        <i class="fas fa-globe"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold text-white">
+                        <span class="text-gray-300">Arindam</span> Halder
+                    </div>
+                    <p class="text-gray-400 mt-2">Healthcare Leader & Transformation Expert</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
+                    <a href="#skills" class="text-gray-400 hover:text-white transition">Skills</a>
+                    <a href="#experience" class="text-gray-400 hover:text-white transition">Experience</a>
+                    <a href="#education" class="text-gray-400 hover:text-white transition">Education</a>
+                    <a href="#blog" class="text-gray-400 hover:text-white transition">Blog</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">
+                    &copy; 2023 Arindam Halder. All rights reserved.
+                </p>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-medium"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Highlight active navigation link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 300) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active-nav');
+                }
+            });
+            
+            // Show/hide back to top button
+            const backToTopButton = document.getElementById('back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        // Back to top functionality
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animate skill bars when they come into view
+        const skillBars = document.querySelectorAll('.skill-progress');
+        
+        const animateSkillBars = () => {
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            bar.style.width = width;
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(bar.parentElement);
+            });
+        };
+        
+        // Rotating role text animation
+        const roleTexts = document.querySelectorAll('.role-text');
+        let currentRoleIndex = 0;
+        
+        const rotateRoles = () => {
+            // Hide all role texts
+            roleTexts.forEach(text => text.classList.remove('active'));
+            
+            // Show current role text
+            roleTexts[currentRoleIndex].classList.add('active');
+            
+            // Move to next role
+            currentRoleIndex = (currentRoleIndex + 1) % roleTexts.length;
+        };
+        
+        // Start rotating roles every 3 seconds
+        setInterval(rotateRoles, 3000);
+        
+        // Initialize animations when page loads
+        window.addEventListener('load', () => {
+            animateSkillBars();
+            
+            // Start with first role visible
+            roleTexts[0].classList.add('active');
+        });
+    </script>
+</body>
+</html>
