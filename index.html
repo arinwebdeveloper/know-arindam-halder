@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arindam Halder - Healthcare Leader</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Custom CSS for smooth scrolling and animations */
@@ -97,6 +99,150 @@
             vertical-align: super;
             color: #6b7280;
         }
+
+        /* 3D Skills Section Styles */
+        .skills-3d-container {
+            perspective: 2000px;
+            perspective-origin: center;
+        }
+        
+        .skills-card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease, box-shadow 0.3s ease;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.1),
+                0 0 0 1px rgba(255,255,255,0.5) inset;
+            backface-visibility: hidden;
+        }
+        
+        .skills-card-3d:hover {
+            transform: translateZ(30px) rotateX(2deg);
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.15),
+                0 0 0 1px rgba(255,255,255,0.8) inset;
+        }
+        
+        .skill-tag-3d {
+            transform-style: preserve-3d;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 4px 6px rgba(0,0,0,0.1),
+                0 1px 3px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .skill-tag-3d::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        .skill-tag-3d:hover {
+            transform: translateZ(15px) scale(1.08) rotateX(-5deg);
+            box-shadow: 
+                0 12px 24px rgba(0,0,0,0.15),
+                0 4px 8px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        
+        .skill-tab {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .skill-tab.active {
+            background-color: #2563eb;
+            color: white;
+            transform: translateY(-2px) translateZ(10px);
+            box-shadow: 
+                0 10px 25px rgba(37, 99, 235, 0.3),
+                0 4px 6px rgba(37, 99, 235, 0.1);
+        }
+        
+        .skill-tab:not(.active):hover {
+            transform: translateY(-1px) translateZ(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .category-section {
+            animation: fadeIn 0.6s ease-out;
+            transform-style: preserve-3d;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) rotateX(-5deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+        
+        .view-all-container {
+            transform-style: preserve-3d;
+            gap: 2rem;
+        }
+        
+        .view-all-left {
+            transform: rotateY(8deg) translateZ(-30px) translateX(10px);
+        }
+        
+        .view-all-center {
+            transform: translateZ(40px) scale(1.02);
+            z-index: 20;
+        }
+        
+        .view-all-right {
+            transform: rotateY(-8deg) translateZ(-30px) translateX(-10px);
+        }
+        
+        @media (max-width: 768px) {
+            .view-all-left, .view-all-right, .view-all-center {
+                transform: none;
+            }
+            .skills-3d-container {
+                perspective: none;
+            }
+        }
+        
+        .single-view-3d {
+            transform-style: preserve-3d;
+            transform: rotateX(1deg);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .industry-tag {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            border: 1px solid #f59e0b;
+        }
+        
+        .technology-tag {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+            border: 1px solid #3b82f6;
+        }
+        
+        .process-tag {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        
+        .floating-tag {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateZ(0px); }
+            50% { transform: translateZ(10px); }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-800">
@@ -141,179 +287,469 @@
     
     <!-- Main Content -->
     <main>
-        <!-- Home Section -->
-        <section id="about" class="section flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+        <!-- Home Section - Enhanced Hero -->
+        <section id="about" class="section relative flex items-center justify-center hero-gradient-bg overflow-hidden">
+            <!-- Animated Background Elements -->
+            <div class="mesh-gradient">
+                <div class="mesh-blob w-96 h-96 bg-blue-300 top-0 left-0 animate-pulse"></div>
+                <div class="mesh-blob w-80 h-80 bg-purple-300 bottom-0 right-0 animate-pulse" style="animation-delay: 2s;"></div>
+                <div class="mesh-blob w-64 h-64 bg-indigo-300 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" style="animation-delay: 4s;"></div>
+            </div>
+            
+            <!-- Floating Geometric Shapes -->
+            <div class="absolute top-20 left-10 w-20 h-20 border-2 border-blue-300 rounded-full opacity-20 animate-spin" style="animation-duration: 20s;"></div>
+            <div class="absolute bottom-20 right-10 w-32 h-32 border-2 border-purple-300 rounded-lg opacity-20 animate-spin" style="animation-duration: 25s; animation-direction: reverse;"></div>
+            <div class="absolute top-40 right-20 w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-400 rounded-lg opacity-10 animate-bounce" style="animation-duration: 8s;"></div>
+            
+            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center relative z-10">
+                <!-- Left Content -->
                 <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
-                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
-                        Hi, I'm <span class="text-blue-600">Arindam Halder</span>
-                    </h1>
-                    <div class="text-2xl md:text-3xl text-gray-600 mb-6 h-12 relative">
-                        <div class="role-text active">Healthcare Leader</div>
-                        <div class="role-text">CXO Advisor</div>
-                        <div class="role-text">Design Thinker</div>
-                        <div class="role-text">Transformation Champion</div>
-                        <div class="role-text">Architect</div>
-                        <div class="role-text">AI Champion</div>
+                    <!-- Tag Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-blue-700 text-sm font-semibold mb-6 hero-badge shadow-lg">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-yellow-500"></i>
+                        <span>AI & Transformation Leader</span>
                     </div>
-                    <p class="text-gray-600 mb-8 max-w-lg">
-                        18+ years of diverse experience in driving innovation and transformation in healthcare through strategic leadership, design thinking, and cutting-edge technology solutions.
+                    
+                    <!-- Main Heading -->
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-4 leading-tight">
+                        Hi, I'm <br>
+                        <span class="gradient-text typing-cursor relative">
+                            Arindam Halder
+                        </span>
+                    </h1>
+                    
+                    <!-- Role Rotator with Enhanced Styling -->
+                    <div class="text-2xl md:text-4xl text-gray-700 mb-8 h-14 relative font-light">
+                        <div class="role-text active flex items-center gap-3">
+                            <i data-lucide="trending-up" class="w-8 h-8 text-blue-600"></i>
+                            <span>Transformation Leader</span>
+                        </div>
+                        <div class="role-text flex items-center gap-3">
+                            <i data-lucide="brain" class="w-8 h-8 text-purple-600"></i>
+                            <span>AI Director</span>
+                        </div>
+                        <div class="role-text flex items-center gap-3">
+                            <i data-lucide="lightbulb" class="w-8 h-8 text-amber-600"></i>
+                            <span>Design Thinker</span>
+                        </div>
+                        <div class="role-text flex items-center gap-3">
+                            <i data-lucide="heart-pulse" class="w-8 h-8 text-rose-600"></i>
+                            <span>Healthcare Expert</span>
+                        </div>
+                        <div class="role-text flex items-center gap-3">
+                            <i data-lucide="shield-check" class="w-8 h-8 text-emerald-600"></i>
+                            <span>Insurance Champion</span>
+                        </div>
+                        <div class="role-text flex items-center gap-3">
+                            <i data-lucide="cpu" class="w-8 h-8 text-indigo-600"></i>
+                            <span>AI Practitioner</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Description -->
+                    <p class="text-gray-600 mb-8 max-w-xl text-lg leading-relaxed">
+                        I lead enterprise <span class="font-semibold text-blue-700">AI and digital transformation</span> initiatives for healthcare and insurance organizations, helping them modernize data platforms, adopt generative AI, and unlock strategic value from large-scale healthcare ecosystems.
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#skills" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition">
-                            View My Skills
+                    
+                    <!-- CTA Buttons with Icons -->
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#skills" class="group inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+                            <span class="font-semibold">View My Skills</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 transform group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <a href="#contact" class="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg shadow-md transition">
-                            Contact Me
+                        <a href="#contact" class="group inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 px-8 py-4 rounded-xl shadow-lg border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+                            <i data-lucide="mail" class="w-5 h-5 text-blue-600"></i>
+                            <span class="font-semibold">Contact Me</span>
                         </a>
+                        <a href="#contact" class="group inline-flex items-center gap-2 glass-card hover:bg-white/90 text-gray-800 px-6 py-4 rounded-xl shadow-md transition-all duration-300 transform hover:-translate-y-1">
+                            <i data-lucide="download" class="w-5 h-5 text-blue-600"></i>
+                            <span class="font-semibold">Download CV</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="flex flex-wrap gap-6 mt-10 pt-8 border-t border-gray-300/50">
+                        <div class="flex items-center gap-2">
+                            <div class="p-2 bg-blue-100 rounded-lg">
+                                <i data-lucide="award" class="w-5 h-5 text-blue-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-900">18+ Years</div>
+                                <div class="text-xs text-gray-500">Experience</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="p-2 bg-purple-100 rounded-lg">
+                                <i data-lucide="building-2" class="w-5 h-5 text-purple-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-900">Fortune 500</div>
+                                <div class="text-xs text-gray-500">Healthcare Leaders</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="p-2 bg-emerald-100 rounded-lg">
+                                <i data-lucide="zap" class="w-5 h-5 text-emerald-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-900">AI/GenAI</div>
+                                <div class="text-xs text-gray-500">Expert</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center animate-fade-in delay-100">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                        <img src="Images/Profile.jfif" 
-                             alt="Arindam Halder" 
-                             class="w-full h-full object-cover">
+                
+                <!-- Right Content - Profile Image -->
+                <div class="md:w-1/2 flex justify-center items-center animate-fade-in delay-100 relative">
+                    <!-- Floating Badges Around Image -->
+                    <!--<div class="absolute top-10 right-10 glass-card px-4 py-2 rounded-xl shadow-lg hero-badge z-20 hidden lg:flex items-center gap-2">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500"></i>
+                        <span class="text-sm font-semibold text-gray-700">Available for Advisory</span>
+                    </div>-->
+                    
+                    <!--<div class="absolute bottom-20 left-0 glass-card px-4 py-2 rounded-xl shadow-lg hero-badge z-20 hidden lg:flex items-center gap-2" style="animation-delay: 1s;">
+                        <i data-lucide="globe" class="w-5 h-5 text-blue-500"></i>
+                        <span class="text-sm font-semibold text-gray-700">Global Healthcare</span>
+                    </div>-->
+                    
+                    <!--<div class="absolute top-1/2 right-0 transform translate-x-4 glass-card px-3 py-2 rounded-lg shadow-lg hero-badge z-20 hidden lg:block" style="animation-delay: 2s;">
+                        <div class="flex items-center gap-1">
+                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
+                        </div>
+                    </div>-->
+                    
+                    <!-- Profile Image Container with 3D Effect -->
+                    <div class="profile-container relative w-72 h-72 md:w-96 md:h-96 cursor-pointer">
+                        <!-- Animated Rings -->
+                        <div class="profile-ring"></div>
+                        <div class="profile-ring"></div>
+                        
+                        <!-- Glow Effect -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-400 to-purple-400 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+                        
+                        <!-- Main Image -->
+                        <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl bg-white">
+                            <img src="Images/Profile.jfif" 
+                                 alt="Arindam Halder" 
+                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                        </div>
+                        
+                        <!-- Tech Stack Icons Around -->
+                        <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3">
+                            <div class="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border border-gray-100 animate-bounce" style="animation-duration: 3s;">
+                                <i data-lucide="brain" class="w-5 h-5 text-purple-600"></i>
+                            </div>
+                            <div class="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border border-gray-100 animate-bounce" style="animation-duration: 3s; animation-delay: 0.5s;">
+                                <i data-lucide="cloud" class="w-5 h-5 text-blue-600"></i>
+                            </div>
+                            <div class="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border border-gray-100 animate-bounce" style="animation-duration: 3s; animation-delay: 1s;">
+                                <i data-lucide="database" class="w-5 h-5 text-green-600"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Scroll Indicator -->
+            <!--<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+                <span class="text-xs text-gray-500 font-medium">Scroll to explore</span>
+                <i data-lucide="chevron-down" class="w-6 h-6 text-blue-600"></i>
+            </div>-->
         </section>
+
+        
         
         <!-- Skills Section -->
-        <section id="skills" class="section py-20 bg-white">
-            <div class="container mx-auto px-6">
+        <section id="skills" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+            <!-- New Skills Section - 3D Design -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <!--<h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">Skills & Expertise</h2>-->
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
-                    My <span class="text-blue-600">Skills</span>
+                    My <span class="text-blue-600">Skills & Expertise</span>
                 </h2>
+                <!--<p class="text-lg text-gray-600 max-w-2xl mx-auto">-->
                 <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
-                    I bring a diverse set of skills to drive healthcare transformation and digital innovation.
+                    Professional capabilities across three key dimensions
                 </p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="flex flex-wrap justify-center gap-3 mb-16 skills-3d-container">
+                <button onclick="switchTab('all')" id="tab-all" class="skill-tab active px-8 py-4 rounded-full font-semibold text-sm md:text-base bg-white text-gray-700 border border-gray-200 shadow-sm hover:shadow-md flex items-center gap-2">
+                    <i data-lucide="layers" class="w-5 h-5"></i>
+                    All Skills
+                </button>
+                <button onclick="switchTab('industry')" id="tab-industry" class="skill-tab px-8 py-4 rounded-full font-semibold text-sm md:text-base bg-white text-gray-700 border border-gray-200 shadow-sm hover:shadow-md flex items-center gap-2">
+                    <i data-lucide="building-2" class="w-5 h-5"></i>
+                    Industry
+                </button>
+                <button onclick="switchTab('technology')" id="tab-technology" class="skill-tab px-8 py-4 rounded-full font-semibold text-sm md:text-base bg-white text-gray-700 border border-gray-200 shadow-sm hover:shadow-md flex items-center gap-2">
+                    <i data-lucide="cpu" class="w-5 h-5"></i>
+                    Technology
+                </button>
+                <button onclick="switchTab('process')" id="tab-process" class="skill-tab px-8 py-4 rounded-full font-semibold text-sm md:text-base bg-white text-gray-700 border border-gray-200 shadow-sm hover:shadow-md flex items-center gap-2">
+                    <i data-lucide="git-branch" class="w-5 h-5"></i>
+                    Process
+                </button>
+            </div>
+
+            <!-- Skills Content Container -->
+            <div id="skills-container" class="skills-3d-container min-h-[500px]">
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Leadership & Strategy</h3>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">Business Leadership</span>
-                                    <span class="text-gray-600">95%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 95%"></div>
-                                </div>
+                <!-- All Skills View - 3D Triptych -->
+                <div id="content-all" class="category-section view-all-container grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                    <!-- Industry Card -->
+                    <div class="view-all-left skills-card-3d bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 rounded-3xl p-8 border border-amber-200 h-full">
+                        <div class="flex items-center gap-4 mb-8 border-b border-amber-200/50 pb-4">
+                            <div class="p-3 bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl shadow-sm">
+                                <i data-lucide="building-2" class="w-7 h-7 text-amber-700"></i>
                             </div>
-                            
                             <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">Digital Transformation</span>
-                                    <span class="text-gray-600">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">Strategic Planning</span>
-                                    <span class="text-gray-600">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">Change Management</span>
-                                    <span class="text-gray-600">80%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 80%"></div>
-                                </div>
+                                <h3 class="text-2xl font-bold text-amber-900">Industry</h3>
+                                <p class="text-amber-700 text-sm font-medium">Domain Expertise</p>
                             </div>
                         </div>
+                        <div class="flex flex-wrap gap-3" id="all-industry-skills">
+                            <!-- Skills injected via JS -->
+                        </div>
                     </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Technical & Innovation</h3>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">Healthcare IT Architecture</span>
-                                    <span class="text-gray-600">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 90%"></div>
-                                </div>
+
+                    <!-- Technology Card -->
+                    <div class="view-all-center skills-card-3d bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-100 rounded-3xl p-8 border border-blue-200 h-full">
+                        <div class="flex items-center gap-4 mb-8 border-b border-blue-200/50 pb-4">
+                            <div class="p-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl shadow-sm">
+                                <i data-lucide="cpu" class="w-7 h-7 text-blue-700"></i>
                             </div>
-                            
                             <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">AI in Healthcare</span>
-                                    <span class="text-gray-600">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 85%"></div>
-                                </div>
+                                <h3 class="text-2xl font-bold text-blue-900">Technology</h3>
+                                <p class="text-blue-700 text-sm font-medium">Tools & Platforms</p>
                             </div>
-                            
+                        </div>
+                        <div class="flex flex-wrap gap-3" id="all-technology-skills">
+                            <!-- Skills injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Process Card -->
+                    <div class="view-all-right skills-card-3d bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100 rounded-3xl p-8 border border-emerald-200 h-full">
+                        <div class="flex items-center gap-4 mb-8 border-b border-emerald-200/50 pb-4">
+                            <div class="p-3 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl shadow-sm">
+                                <i data-lucide="git-branch" class="w-7 h-7 text-emerald-700"></i>
+                            </div>
                             <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">Design Thinking</span>
-                                    <span class="text-gray-600">88%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 88%"></div>
-                                </div>
+                                <h3 class="text-2xl font-bold text-emerald-900">Process</h3>
+                                <p class="text-emerald-700 text-sm font-medium">Methodologies</p>
                             </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="font-medium text-gray-700">Data Integration & Analytics</span>
-                                    <span class="text-gray-600">82%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" style="width: 82%"></div>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3" id="all-process-skills">
+                            <!-- Skills injected via JS -->
                         </div>
                     </div>
                 </div>
+
+                <!-- Industry Only View -->
+                <div id="content-industry" class="category-section hidden">
+                    <div class="single-view-3d skills-card-3d bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 rounded-3xl p-10 md:p-16 border border-amber-200">
+                        <div class="text-center mb-10">
+                            <div class="inline-flex items-center justify-center p-4 bg-gradient-to-br from-amber-100 to-amber-200 rounded-3xl shadow-lg mb-6">
+                                <i data-lucide="building-2" class="w-10 h-10 text-amber-700"></i>
+                            </div>
+                            <h3 class="text-4xl font-bold text-amber-900 mb-3">Industry Expertise</h3>
+                            <p class="text-amber-800 text-lg max-w-2xl mx-auto">
+                                Deep domain knowledge across healthcare, governance, and enterprise sectors
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto" id="industry-only-skills">
+                            <!-- Skills injected via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technology Only View -->
+                <div id="content-technology" class="category-section hidden">
+                    <div class="single-view-3d skills-card-3d bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-100 rounded-3xl p-10 md:p-16 border border-blue-200">
+                        <div class="text-center mb-10">
+                            <div class="inline-flex items-center justify-center p-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl shadow-lg mb-6">
+                                <i data-lucide="cpu" class="w-10 h-10 text-blue-700"></i>
+                            </div>
+                            <h3 class="text-4xl font-bold text-blue-900 mb-3">Technical Skills</h3>
+                            <p class="text-blue-800 text-lg max-w-2xl mx-auto">
+                                Comprehensive technology stack spanning AI, cloud, databases, and development frameworks
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto" id="technology-only-skills">
+                            <!-- Skills injected via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Process Only View -->
+                <div id="content-process" class="category-section hidden">
+                    <div class="single-view-3d skills-card-3d bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100 rounded-3xl p-10 md:p-16 border border-emerald-200">
+                        <div class="text-center mb-10">
+                            <div class="inline-flex items-center justify-center p-4 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-3xl shadow-lg mb-6">
+                                <i data-lucide="git-branch" class="w-10 h-10 text-emerald-700"></i>
+                            </div>
+                            <h3 class="text-4xl font-bold text-emerald-900 mb-3">Process & Methodology</h3>
+                            <p class="text-emerald-800 text-lg max-w-2xl mx-auto">
+                                Strategic frameworks and agile methodologies for enterprise delivery
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto" id="process-only-skills">
+                            <!-- Skills injected via JS -->
+                        </div>
+                    </div>
+                    </div>
+
+                 </div>
+            </div>
+            <!-- Core Leadership Capabilities - Enhanced 3D Design -->
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 mb-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
+                            Core <span class="text-blue-600">Leadership Capabilities</span>
+                        </h2>
+                        <!--<h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Core Leadership Capabilities</h3>-->
+                        <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+                        <!--<p class="text-gray-600 mt-4 max-w-2xl mx-auto">-->
+                        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">Strategic expertise driving enterprise transformation and innovation</p>
+                    </div>
                 
-                <div class="mt-16">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-8 text-center">Areas of Expertise</h3>
-                    
-                    <div class="flex flex-wrap justify-center gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
-                            <i class="fas fa-hospital text-4xl text-blue-500 mb-2"></i>
-                            <span class="text-sm text-gray-700">Healthcare EHR</span>
+                <div class="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
+                    <!-- Capability 1: AI Strategy -->
+                    <div class="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden w-full sm:w-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="brain-circuit" class="w-8 h-8 text-blue-700"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">AI Strategy & Adoption</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">Enterprise AI implementation and governance frameworks</p>
+                            <div onclick="openModal('ai-strategy')" class="mt-4 flex items-center text-blue-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                <span>Learn more</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
                         </div>
-                        
-                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
-                            <i class="fas fa-brain text-4xl text-purple-500 mb-2"></i>
-                            <span class="text-sm text-gray-700">AI/ML/GenAI</span>
+                    </div>
+
+                    <!-- Capability 2: Generative AI -->
+                    <div class="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden w-full sm:w-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-pink-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="sparkles" class="w-8 h-8 text-purple-700"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Generative AI & Agents</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">AI platforms, LLMs, and autonomous agent orchestration</p>
+                            <div onclick="openModal('generative-ai')" class="mt-4 flex items-center text-purple-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                <span>Learn more</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
                         </div>
-                        
-                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
-                            <i class="fas fa-project-diagram text-4xl text-green-500 mb-2"></i>
-                            <span class="text-sm text-gray-700">Strategy</span>
+                    </div>
+
+                    <!-- Capability 3: Healthcare Data -->
+                    <div class="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden w-full sm:w-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-teal-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="activity" class="w-8 h-8 text-emerald-700"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Healthcare Data Platforms</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">Advanced analytics and data modernization solutions</p>
+                            <div onclick="openModal('healthcare-data')" class="mt-4 flex items-center text-emerald-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                <span>Learn more</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
                         </div>
-                        
-                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
-                            <i class="fas fa-lightbulb text-4xl text-yellow-500 mb-2"></i>
-                            <span class="text-sm text-gray-700">Innovation</span>
+                    </div>
+
+                    <!-- Capability 4: Digital Transformation -->
+                    <div class="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden w-full sm:w-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-amber-50/50 to-orange-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="lightbulb" class="w-8 h-8 text-amber-700"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Digital Transformation</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">Strategic leadership for enterprise-wide innovation</p>
+                            <div onclick="openModal('digital-transformation')" class="mt-4 flex items-center text-amber-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                <span>Learn more</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
                         </div>
-                        
-                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
-                            <i class="fas fa-chart-line text-4xl text-red-500 mb-2"></i>
-                            <span class="text-sm text-gray-700">Analytics</span>
+                    </div>
+
+                    <!-- Capability 5: Healthcare Systems -->
+                    <div class="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden w-full sm:w-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-rose-50/50 to-red-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="heart-pulse" class="w-8 h-8 text-rose-700"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Payer & Provider Systems</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">Deep expertise in healthcare ecosystem operations</p>
+                            <div onclick="openModal('payer-provider')" class="mt-4 flex items-center text-rose-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                <span>Learn more</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
                         </div>
-                        
-                        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex flex-col items-center w-24">
-                            <i class="fas fa-users text-4xl text-indigo-500 mb-2"></i>
-                            <span class="text-sm text-gray-700">Leadership</span>
+                    </div>
+
+                    <!-- Capability 6: Cloud Transformation -->
+                    <div class="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden w-full sm:w-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-indigo-100 to-indigo-200 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="cloud-cog" class="w-8 h-8 text-indigo-700"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Cloud Transformation</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">Modern infrastructure and data platform migration</p>
+                            <div onclick="openModal('cloud-transformation')" class="mt-4 flex items-center text-indigo-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                <span>Learn more</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capability 7: Agile Delivery -->
+                    <div class="group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden w-full sm:w-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-50/50 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 mb-4 rounded-2xl bg-gradient-to-br from-cyan-100 to-cyan-200 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="users" class="w-8 h-8 text-cyan-700"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900 mb-2">Agile Program Leadership</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed">Large-scale delivery management and team empowerment</p>
+                            <div onclick="openModal('agile-leadership')" class="mt-4 flex items-center text-cyan-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                <span>Learn more</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+
+            <!-- Modal for Leadership Capabilities -->
+            <div id="capability-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <!-- Background overlay -->
+                    <div id="modal-overlay" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeModal()"></div>
+                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                    <!-- Modal panel -->
+                    <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                        <div id="modal-content" class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <!-- Content injected via JS -->
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="button" onclick="closeModal()" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                Close
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -321,170 +757,398 @@
         </section>
         
         <!-- Experience Section -->
-        <section id="experience" class="section py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
-                    My <span class="text-blue-600">Experience</span>
-                </h2>
-                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
-                    A track record of driving transformation and delivering results in healthcare organizations.
-                </p>
-                
-                <div class="max-w-3xl mx-auto">
-                    <div class="relative">
-                        <!-- Timeline line -->
-                        <div class="absolute left-1/2 w-1 h-full bg-gray-200 transform -translate-x-1/2"></div>
+        <section id="experience" class="section py-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+                        Professional <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Journey</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Two decades of leadership driving transformation across healthcare ecosystems
+                    </p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full mt-6"></div>
+                </div>
+
+                <!-- Enhanced Timeline -->
+                <div class="max-w-5xl mx-auto relative">
+                    <!-- Animated Gradient Timeline Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-400 via-blue-400 to-emerald-400 rounded-full shadow-lg hidden md:block"></div>
+                    
+                    <!-- Timeline Items -->
+                    <div class="space-y-12 md:space-y-16">
                         
-                        <!-- Timeline items -->
-                        <div class="space-y-8">
-                            <!-- Item 1 -->
-                            <div class="relative">
-                                <div class="bg-white p-6 rounded-lg shadow-md relative z-10 md:w-1/2 ml-auto">
-                                    <div class="flex items-center mb-2">
-                                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                                            <i class="fas fa-briefcase text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-bold text-gray-800">Chief Innovation Officer</h3>
-                                            <p class="text-gray-600">Large US Disabilty and Group Healthcare Payer</p>
-                                            <p class="text-sm text-gray-500">2022 - Present</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-700">
-                                        Spearheaded AI/GenAI implementation projects that reduced Long Term care costs by 22% and improved CSAT scores by 200 basis points.
-                                    </p>
-                                </div>
-                                <div class="absolute top-6 left-1/2 w-4 h-4 bg-blue-600 rounded-full transform -translate-x-1/2"></div>
+                        <!-- Item 1: Chief Innovation Officer -->
+                        <div class="relative md:flex md:items-center md:justify-between group">
+                            <!-- Mobile Timeline Dot -->
+                            <div class="md:hidden absolute left-0 top-0 w-4 h-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full shadow-lg transform -translate-x-1/2 left-[2px]"></div>
+                            
+                            <!-- Content -->
+                            <div class="hidden md:block md:w-5/12"></div>
+                            
+                            <!-- Center Icon -->
+                            <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 border-4 border-white shadow-xl z-20 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="lightbulb" class="w-8 h-8 text-purple-600"></i>
                             </div>
                             
-                            <!-- Item 2 -->
-                            <div class="relative">
-                                <div class="bg-white p-6 rounded-lg shadow-md relative z-10 md:w-1/2">
-                                    <div class="flex items-center mb-2">
-                                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                                            <i class="fas fa-briefcase text-blue-600"></i>
+                            <!-- Card -->
+                            <div class="ml-8 md:ml-0 md:w-5/12 md:-mt-8">
+                                <div class="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform md:-translate-y-2 md:hover:-translate-y-4 border border-gray-100 overflow-hidden skills-card-3d">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-purple-50/80 to-pink-50/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    
+                                    <div class="relative z-10">
+                                        <!-- Header -->
+                                        <div class="flex items-center justify-between mb-4">
+                                            <span class="px-4 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full text-sm font-semibold border border-purple-200">
+                                                2022 - Present
+                                            </span>
+                                            <div class="md:hidden p-2 bg-purple-100 rounded-full">
+                                                <i data-lucide="lightbulb" class="w-5 h-5 text-purple-600"></i>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h3 class="font-bold text-gray-800">Chief Information Officer</h3>
-                                            <p class="text-gray-600">Large US Network Hospital</p>
-                                            <p class="text-sm text-gray-500">2019 - 2022</p>
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-700">
-                                        Led digital transformation initiatives across 25 hospitals, resulting in 30% operational efficiency gains and improved patient outcomes.
-                                        <!--Spearheaded AI implementation projects that reduced diagnostic errors by 22% and improved patient satisfaction scores.-->
-                                    </p>
-                                </div>
-                                <div class="absolute top-6 left-1/2 w-4 h-4 bg-blue-600 rounded-full transform -translate-x-1/2"></div>
-                            </div>
-                            
-                            <!-- Item 3 -->
-                            <div class="relative">
-                                <div class="bg-white p-6 rounded-lg shadow-md relative z-10 md:w-1/2 ml-auto">
-                                    <div class="flex items-center mb-2">
-                                        <div class="bg-blue-100 p-2 rounded-full mr-4">
-                                            <i class="fas fa-briefcase text-blue-600"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-bold text-gray-800">VP of Specialty Insurance</h3>
-                                            <p class="text-gray-600">Large US Healthcare Payer</p>
-                                            <p class="text-sm text-gray-500">2016 - 2019</p>
+                                        
+                                        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-purple-700 transition-colors">Account Executive & AI Director</h3>
+                                        <p class="text-purple-600 font-medium mb-4 flex items-center gap-2">
+                                            <i data-lucide="building-2" class="w-4 h-4"></i>
+                                            Large US Disability & Group Healthcare Payer
+                                        </p>
+                                        
+                                        <p class="text-gray-600 leading-relaxed mb-4">
+                                            Spearheaded AI/GenAI adoption and implementation that reduced Long Term care costs by <span class="font-semibold text-purple-700">22%</span> and improved CSAT scores by <span class="font-semibold text-purple-700">200 basis points</span>.
+                                        </p>
+                                        
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-purple-700 border border-purple-200">AI Strategy</span>
+                                            <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-purple-700 border border-purple-200">GenAI</span>
+                                            <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-purple-700 border border-purple-200">Cost Optimization</span>
                                         </div>
                                     </div>
-                                    <p class="text-gray-700">
-                                        Architected and implemented system-wide Provider integration that saved $12M annually in operational costs in Dental Insurance.
-                                    </p>
                                 </div>
-                                <div class="absolute top-6 left-1/2 w-4 h-4 bg-blue-600 rounded-full transform -translate-x-1/2"></div>
                             </div>
                         </div>
+
+                        <!-- Item 2: Chief Information Officer -->
+                        <div class="relative md:flex md:items-center md:justify-between group">
+                            <!-- Mobile Timeline Dot -->
+                            <div class="md:hidden absolute left-0 top-0 w-4 h-4 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full shadow-lg transform -translate-x-1/2 left-[2px]"></div>
+                            
+                            <!-- Card -->
+                            <div class="ml-8 md:ml-0 md:w-5/12 md:-mt-8">
+                                <div class="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform md:-translate-y-2 md:hover:-translate-y-4 border border-gray-100 overflow-hidden skills-card-3d">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    
+                                    <div class="relative z-10">
+                                        <!-- Header -->
+                                        <div class="flex items-center justify-between mb-4">
+                                            <span class="px-4 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 rounded-full text-sm font-semibold border border-blue-200">
+                                                2019 - 2022
+                                            </span>
+                                            <div class="md:hidden p-2 bg-blue-100 rounded-full">
+                                                <i data-lucide="hospital" class="w-5 h-5 text-blue-600"></i>
+                                            </div>
+                                        </div>
+                                        
+                                        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">Enterprise Architect & Consultant</h3>
+                                        <p class="text-blue-600 font-medium mb-4 flex items-center gap-2">
+                                            <i data-lucide="hospital" class="w-4 h-4"></i>
+                                            Large US Network Hospital System
+                                        </p>
+                                        
+                                        <p class="text-gray-600 leading-relaxed mb-4">
+                                            Led digital transformation across <span class="font-semibold text-blue-700">25 hospitals</span>, resulting in <span class="font-semibold text-blue-700">30% operational efficiency</span> gains and significantly improved patient outcomes.
+                                        </p>
+                                        
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-blue-700 border border-blue-200">Digital Transformation</span>
+                                            <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-blue-700 border border-blue-200">EHR Modernization</span>
+                                            <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-blue-700 border border-blue-200">Cloud Migration</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Center Icon -->
+                            <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 border-4 border-white shadow-xl z-20 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="stethoscope" class="w-8 h-8 text-blue-600"></i>
+                            </div>
+                            
+                            <div class="hidden md:block md:w-5/12"></div>
+                        </div>
+
+                        <!-- Item 3: VP of Specialty Insurance -->
+                        <div class="relative md:flex md:items-center md:justify-between group">
+                            <!-- Mobile Timeline Dot -->
+                            <div class="md:hidden absolute left-0 top-0 w-4 h-4 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full shadow-lg transform -translate-x-1/2 left-[2px]"></div>
+                            
+                            <div class="hidden md:block md:w-5/12"></div>
+                            
+                            <!-- Center Icon -->
+                            <div class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 border-4 border-white shadow-xl z-20 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="shield-check" class="w-8 h-8 text-emerald-600"></i>
+                            </div>
+                            
+                            <!-- Card -->
+                            <div class="ml-8 md:ml-0 md:w-5/12 md:-mt-8">
+                                <div class="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform md:-translate-y-2 md:hover:-translate-y-4 border border-gray-100 overflow-hidden skills-card-3d">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-50/80 to-teal-50/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    
+                                    <div class="relative z-10">
+                                        <!-- Header -->
+                                        <div class="flex items-center justify-between mb-4">
+                                            <span class="px-4 py-1.5 bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-700 rounded-full text-sm font-semibold border border-emerald-200">
+                                                2016 - 2019
+                                            </span>
+                                            <div class="md:hidden p-2 bg-emerald-100 rounded-full">
+                                                <i data-lucide="shield" class="w-5 h-5 text-emerald-600"></i>
+                                            </div>
+                                        </div>
+                                        
+                                        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-emerald-700 transition-colors">Transformation Architect</h3>
+                                        <p class="text-emerald-600 font-medium mb-4 flex items-center gap-2">
+                                            <i data-lucide="umbrella" class="w-4 h-4"></i>
+                                            Large US Healthcare Payer
+                                        </p>
+                                        
+                                        <p class="text-gray-600 leading-relaxed mb-4">
+                                            Architected system-wide Provider integration saving <span class="font-semibold text-emerald-700">$12M annually</span> in operational costs within Dental Insurance division.
+                                        </p>
+                                        
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-emerald-700 border border-emerald-200">Systems Integration</span>
+                                            <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-emerald-700 border border-emerald-200">Cost Reduction</span>
+                                            <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-emerald-700 border border-emerald-200">Provider Networks</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Education Section -->
-        <section id="education" class="section py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">
-                    My <span class="text-blue-600">Education</span>
-                </h2>
-                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
-                    The foundation of my expertise in healthcare leadership and technology.
-                </p>
                 
-                <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Education 1 -->
-                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-start mb-4">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-graduation-cap text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">B.Tech in Computer Science</h3>
-                                <p class="text-gray-600">West Bengal University of Technology, Kolkata, India</p>
-                                <p class="text-sm text-gray-500">2003 - 2007</p>
-                            </div>
+                <!-- Achievement Stats -->
+                <div class="max-w-5xl mx-auto mt-20">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-md text-center border border-gray-100 hover:shadow-xl transition-shadow">
+                            <div class="text-3xl font-bold text-blue-600 mb-1">18+</div>
+                            <div class="text-sm text-gray-600">Years Experience</div>
                         </div>
-                        <p class="text-gray-700">
-                            Focused on diverse technology knowledge and developing analytical and structured thought leadership.
-                        </p>
+                        <div class="bg-white p-6 rounded-2xl shadow-md text-center border border-gray-100 hover:shadow-xl transition-shadow">
+                            <div class="text-3xl font-bold text-purple-600 mb-1">$50M+</div>
+                            <div class="text-sm text-gray-600">Cost Savings</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-md text-center border border-gray-100 hover:shadow-xl transition-shadow">
+                            <div class="text-3xl font-bold text-emerald-600 mb-1">25+</div>
+                            <div class="text-sm text-gray-600">Hospitals Transformed</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-md text-center border border-gray-100 hover:shadow-xl transition-shadow">
+                            <div class="text-3xl font-bold text-amber-600 mb-1">500+</div>
+                            <div class="text-sm text-gray-600">Team Members Led</div>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <!-- Education Section -->
+        <section id="education" class="section py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+                        Academic <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Excellence</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        A foundation of continuous learning spanning technology, leadership, and innovation
+                    </p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full mt-6"></div>
+                </div>
+
+                <!-- Education Cards Grid -->
+                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                     
-                    <!-- Education 2 -->
-                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-start mb-4">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-graduation-cap text-blue-600"></i>
+                    <!-- Education 1: B.Tech - Blue Theme -->
+                    <div class="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 overflow-hidden skills-card-3d">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative z-10">
+                            <!-- Header with Icon -->
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="graduation-cap" class="w-8 h-8 text-blue-700"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="inline-block px-4 py-1.5 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 rounded-full text-sm font-semibold border border-blue-200 mb-2">
+                                        2003 - 2007
+                                    </span>
+                                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors leading-tight">
+                                        B.Tech in Computer Science
+                                    </h3>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Emerging Leadership & Business Management</h3>
-                                <p class="text-gray-600">The Ohio State University Fisher College of Business</p>
-                                <p class="text-sm text-gray-500">2020</p>
+                            
+                            <!-- Institution -->
+                            <div class="flex items-center gap-2 mb-4 text-blue-600 font-medium">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                <span>West Bengal University of Technology, Kolkata, India</span>
+                            </div>
+                            
+                            <!-- Description -->
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                Built a strong foundation in computer science with focus on software engineering, data structures, and analytical problem-solving.
+                            </p>
+                            
+                            <!-- Tags -->
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-blue-700 border border-blue-200 font-medium">Software Engineering</span>
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-blue-700 border border-blue-200 font-medium">Data Structures</span>
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-blue-700 border border-blue-200 font-medium">Algorithms</span>
                             </div>
                         </div>
-                        <p class="text-gray-700">
-                            Specialized in Leadership, Business, Management, Marketing, and Related Support Services.
-                        </p>
                     </div>
-                    
-                    <!-- Education 3 -->
-                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-start mb-4">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-graduation-cap text-blue-600"></i>
+
+                    <!-- Education 2: Ohio State - Purple Theme -->
+                    <div class="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 overflow-hidden skills-card-3d">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-50/80 to-pink-50/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative z-10">
+                            <!-- Header with Icon -->
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="award" class="w-8 h-8 text-purple-700"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="inline-block px-4 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full text-sm font-semibold border border-purple-200 mb-2">
+                                        2020
+                                    </span>
+                                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors leading-tight">
+                                        Emerging Leadership & Business Management
+                                    </h3>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Digital Transformation Executive</h3>
-                                <p class="text-gray-600">INSEAD, Singapore</p>
-                                <p class="text-sm text-gray-500">2021</p>
+                            
+                            <!-- Institution -->
+                            <div class="flex items-center gap-2 mb-4 text-purple-600 font-medium">
+                                <i data-lucide="building-2" class="w-4 h-4"></i>
+                                <span>The Ohio State University Fisher College of Business</span>
+                            </div>
+                            
+                            <!-- Description -->
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                Executive education focused on strategic leadership, business management, and organizational transformation.
+                            </p>
+                            
+                            <!-- Tags -->
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-purple-700 border border-purple-200 font-medium">Strategic Leadership</span>
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-purple-700 border border-purple-200 font-medium">Business Management</span>
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-purple-700 border border-purple-200 font-medium">Marketing</span>
                             </div>
                         </div>
-                        <p class="text-gray-700">
-                            Executive Training with emphasis on Leading Digital Transformation and Innovation.
-                        </p>
                     </div>
-                    
-                    <!-- Education 4 -->
-                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition">
-                        <div class="flex items-start mb-4">
-                            <div class="bg-blue-100 p-3 rounded-full mr-4">
-                                <i class="fas fa-certificate text-blue-600"></i>
+
+                    <!-- Education 3: INSEAD - Emerald Theme -->
+                    <div class="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 overflow-hidden skills-card-3d">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-50/80 to-teal-50/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative z-10">
+                            <!-- Header with Icon -->
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="globe" class="w-8 h-8 text-emerald-700"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="inline-block px-4 py-1.5 bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-700 rounded-full text-sm font-semibold border border-emerald-200 mb-2">
+                                        2021
+                                    </span>
+                                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-emerald-700 transition-colors leading-tight">
+                                        Digital Transformation Executive
+                                    </h3>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Expert in AI & GenAI</h3>
-                                <p class="text-gray-600">Microsoft Education Partner</p>
-                                <p class="text-sm text-gray-500">Various</p>
+                            
+                            <!-- Institution -->
+                            <div class="flex items-center gap-2 mb-4 text-emerald-600 font-medium">
+                                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                <span>INSEAD, Singapore</span>
+                            </div>
+                            
+                            <!-- Description -->
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                World-class executive training with emphasis on leading digital transformation, innovation strategy, and global business leadership.
+                            </p>
+                            
+                            <!-- Tags -->
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-emerald-700 border border-emerald-200 font-medium">Digital Strategy</span>
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-emerald-700 border border-emerald-200 font-medium">Innovation</span>
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-emerald-700 border border-emerald-200 font-medium">Global Leadership</span>
                             </div>
                         </div>
-                        <p class="text-gray-700">
-                            Certificates in AI Strategy, Implementation and GenAI principles.
-                        </p>
+                    </div>
+
+                    <!-- Education 4: Microsoft Certifications - Amber/Orange Theme -->
+                    <div class="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 overflow-hidden skills-card-3d">
+                        <div class="absolute inset-0 bg-gradient-to-br from-amber-50/80 to-orange-50/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="relative z-10">
+                            <!-- Header with Icon -->
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="badge-check" class="w-8 h-8 text-amber-700"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="inline-block px-4 py-1.5 bg-gradient-to-r from-amber-100 to-orange-100 text-amber-700 rounded-full text-sm font-semibold border border-amber-200 mb-2">
+                                        Continuous Learning
+                                    </span>
+                                    <h3 class="text-xl font-bold text-gray-900 group-hover:text-amber-700 transition-colors leading-tight">
+                                        Expert in AI & GenAI
+                                    </h3>
+                                </div>
+                            </div>
+                            
+                            <!-- Institution -->
+                            <div class="flex items-center gap-2 mb-4 text-amber-600 font-medium">
+                                <i data-lucide="microsoft" class="w-4 h-4"></i>
+                                <span>Microsoft Education Partner</span>
+                            </div>
+                            
+                            <!-- Description -->
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                Comprehensive certifications in AI Strategy, Implementation methodologies, and Generative AI principles from Microsoft's official curriculum.
+                            </p>
+                            
+                            <!-- Tags -->
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-amber-700 border border-amber-200 font-medium">AI Strategy</span>
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-amber-700 border border-amber-200 font-medium">GenAI Implementation</span>
+                                <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-amber-700 border border-amber-200 font-medium">Azure AI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Continuous Learning Banner -->
+                <div class="max-w-4xl mx-auto mt-16">
+                    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 shadow-xl text-white text-center">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                            <div class="p-3 bg-white/20 rounded-full">
+                                <i data-lucide="book-open" class="w-8 h-8"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Lifelong Learning Commitment</h4>
+                                <p class="text-blue-100">Continuously expanding expertise through executive education, certifications, and industry conferences</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
         
+        
+        
+        
+
         <!-- Blog Section -->
         <section id="blog" class="section py-20 bg-gray-50">
             <div class="container mx-auto px-6">
@@ -494,7 +1158,6 @@
                 <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
                     Insights on healthcare transformation, AI in Precision Care, and emerging technologies.
                 </p>
-                
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Blog Post 1 -->
                     <div class="bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
@@ -518,11 +1181,9 @@
                             </a>
                         </div>
                     </div>
-                    
                     <!-- Blog Post 2 -->
                     <div class="bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
                         <div class="h-48 overflow-hidden">
-                            <!--<img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" -->
                             <img src="Images/Fractals.png" 
                                  alt="Digital Transformation" 
                                  class="w-full h-full object-cover">
@@ -533,7 +1194,7 @@
                                 <span class="mx-2">•</span>
                                 <span>6 min read</span>
                             </div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Fractals in Medicine: Unlocking Nature’s Patterns to Revolutionize Healthcare</h3>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Fractals in Medicine: Unlocking Nature's Patterns to Revolutionize Healthcare</h3>
                             <p class="text-gray-600 mb-4">
                                 Welcome to the world of fractals—nature's way of blending beauty with complexity—and their transformative role in healthcare.
                             </p>
@@ -542,7 +1203,6 @@
                             </a>
                         </div>
                     </div>
-                    
                     <!-- Blog Post 3 -->
                     <div class="bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
                         <div class="h-48 overflow-hidden">
@@ -565,7 +1225,6 @@
                             </a>
                         </div>
                     </div>
-
                     <!-- Blog Post 4 -->
                     <div class="bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
                         <div class="h-48 overflow-hidden">
@@ -583,13 +1242,34 @@
                             <p class="text-gray-600 mb-4">
                                 This paper explores the application of LAM in healthcare, detailing its role across Personal LAM (PLAM), Corporate LAM (CLAM), and Government LAM (GLAM).
                             </p>
-                            <a href="https://www.linkedin.com/pulse/role-large-action-models-lam-revolutionizing-arindam-halder-bzdbf/?trackingId=RqXWNPE7SWGa%2Fxzuqck5ZA%3D%3D" class="text-blue-600 hover:text-blue-800 font-medium">
+                            <a href="https://www.linkedin.com/pulse/role-large-action-models-lam-revolutionizing-arindam-halder-bzdbf/?trackingId=RqXWNPE7SWGa%2Fxzuqck5ZA%3D%3D" class="text-blue-600 hover:text-blue-800 font-medium" target="_blank" rel="noopener noreferrer">
+                                Read More →
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Blog Post 4 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg transition duration-300">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1584515933487-779824d29309" 
+                                 alt="Design Thinking" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-2">
+                                <span>May 18, 2025</span>
+                                <span class="mx-2">•</span>
+                                <span>10 min read</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Reimagining long-term care through AI</h3>
+                            <p class="text-gray-600 mb-4">
+                                This paper explores how Artificial intelligence, along with IoT, offers a pathway to transform LTC from its current reactive, episodic interventions to a proactive, predictive, and personalized care model.
+                            </p>
+                            <a href="https://www.tcs.com/insights/blogs/reimagining-long-term-care-with-ai-personalized-elderly-care" class="text-blue-600 hover:text-blue-800 font-medium" target="_blank" rel="noopener noreferrer">
                                 Read More →
                             </a>
                         </div>
                     </div>
                 </div>
-                
                 <div class="text-center mt-12">
                     <a href="#" class="inline-block border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg shadow-md transition">
                         View All Articles
@@ -597,7 +1277,8 @@
                 </div>
             </div>
         </section>
-        
+
+               
         <!-- Contact Section -->
         <section id="contact" class="section py-20 bg-white">
             <div class="container mx-auto px-6">
@@ -859,6 +1540,289 @@
             // Start with first role visible
             roleTexts[0].classList.add('active');
         });
+
+
+    
+        // Categorized Skills Data - Based on your 30 skills
+        const skillsData = {
+            industry: [
+                "AI Policy, Governance, and Regulation",
+                "AI for Healthcare",
+                "Business Intelligence",
+                "Data Warehousing",
+                "Customer Engagement"
+            ],
+            technology: [
+                "Cloud-Native Architecture",
+                "Data Platforms",
+                "Artificial Intelligence (AI)",
+                "LangChain",
+                "Microsoft Copilot",
+                "Generative AI",
+                "Microservices",
+                "Shell Scripting",
+                "AngularJS",
+                "Oracle",
+                "PL/SQL",
+                "Unix",
+                "Java",
+                "JavaScript",
+                "HTML",
+                "Node.js",
+                "MongoDB",
+                "DevOps",
+                "API Management"
+            ],
+            process: [
+                "Enterprise Architecture Planning",
+                "IT Strategy",
+                "Digital Strategy",
+                "Agile Methodologies",
+                "Project Management",
+                "Requirements Analysis"
+            ]
+        };
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Render skills into containers
+        function renderSkills() {
+            // Render for All view (3 columns)
+            renderSkillList('all-industry-skills', skillsData.industry, 'industry');
+            renderSkillList('all-technology-skills', skillsData.technology, 'technology');
+            renderSkillList('all-process-skills', skillsData.process, 'process');
+
+            // Render for individual tabs
+            renderSkillList('industry-only-skills', skillsData.industry, 'industry');
+            renderSkillList('technology-only-skills', skillsData.technology, 'technology');
+            renderSkillList('process-only-skills', skillsData.process, 'process');
+        }
+
+        function renderSkillList(containerId, skills, type) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = skills.map((skill, index) => `
+                <span class="skill-tag skill-tag-3d ${type}-tag px-5 py-2.5 rounded-full text-sm font-semibold cursor-default inline-flex items-center gap-2 floating-tag" style="animation-delay: ${index * 0.1}s">
+                    ${getIconForSkill(type)}
+                    ${skill}
+                </span>
+            `).join('');
+        }
+
+        function getIconForSkill(type) {
+            if (type === 'industry') return '<i data-lucide="briefcase" class="w-4 h-4 opacity-70"></i>';
+            if (type === 'technology') return '<i data-lucide="zap" class="w-4 h-4 opacity-70"></i>';
+            return '<i data-lucide="check-circle" class="w-4 h-4 opacity-70"></i>';
+        }
+
+        // Tab Switching Logic with 3D transition
+        function switchTab(tabName) {
+            // Update button states
+            document.querySelectorAll('.skill-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+
+            // Hide all content with fade
+            const allContent = document.querySelectorAll('.category-section');
+            allContent.forEach(content => {
+                content.classList.add('hidden');
+                content.style.opacity = '0';
+            });
+
+            // Show selected content with animation
+            const selectedContent = document.getElementById(`content-${tabName}`);
+            selectedContent.classList.remove('hidden');
+            
+            // Trigger reflow for animation
+            void selectedContent.offsetWidth;
+            
+            selectedContent.style.opacity = '1';
+            
+            // Re-initialize icons for newly visible content
+            setTimeout(() => {
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+            }, 50);
+        }
+        // Modal content data
+        const modalContent = {
+            'ai-strategy': {
+                title: 'AI Strategy & Adoption',
+                icon: 'brain-circuit',
+                color: 'blue',
+                description: 'Leading enterprise AI implementation with comprehensive governance frameworks that ensure ethical, scalable, and ROI-driven adoption across healthcare organizations.',
+                details: [
+                    'Developed enterprise-wide AI governance frameworks ensuring compliance with HIPAA, FDA regulations, and ethical AI principles',
+                    'Implemented AI Centers of Excellence (CoE) that accelerated AI adoption by 300% across business units',
+                    'Created AI ROI measurement frameworks tracking both financial and clinical outcomes',
+                    'Led AI literacy programs training 500+ employees on AI capabilities and limitations',
+                    'Established vendor evaluation criteria for AI/ML platforms and solutions'
+                ]
+            },
+            'generative-ai': {
+                title: 'Generative AI & Agents',
+                icon: 'sparkles',
+                color: 'purple',
+                description: 'Architecting next-generation AI platforms leveraging Large Language Models and autonomous agents to revolutionize healthcare operations and patient engagement.',
+                details: [
+                    'Designed and deployed LLM-based clinical documentation systems reducing physician burnout by 40%',
+                    'Implemented autonomous AI agents for prior authorization processing, reducing turnaround time from days to minutes',
+                    'Built secure GenAI infrastructure with PII protection and data sovereignty compliance',
+                    'Created prompt engineering frameworks and model fine-tuning pipelines for healthcare-specific use cases',
+                    'Led evaluation and integration of multimodal AI systems for medical imaging analysis'
+                ]
+            },
+            'healthcare-data': {
+                title: 'Healthcare Data Platforms',
+                icon: 'activity',
+                color: 'emerald',
+                description: 'Building modern, cloud-native data ecosystems that unlock the value of healthcare data while ensuring interoperability, security, and real-time analytics capabilities.',
+                details: [
+                    'Architected FHIR-based data lakes integrating EHR, claims, and IoT data sources',
+                    'Implemented real-time streaming analytics platforms processing 10M+ events daily',
+                    'Designed Master Data Management (MDM) solutions for patient and provider identity resolution',
+                    'Built data quality frameworks ensuring 99.9% accuracy for clinical decision support',
+                    'Led migration from legacy data warehouses to modern cloud-native platforms (Snowflake, Databricks)'
+                ]
+            },
+            'digital-transformation': {
+                title: 'Digital Transformation',
+                icon: 'lightbulb',
+                color: 'amber',
+                description: 'Driving end-to-end digital transformation initiatives that modernize legacy systems, optimize workflows, and create seamless digital experiences for patients and providers.',
+                details: [
+                    'Led $50M+ digital transformation program modernizing 25+ legacy applications',
+                    'Implemented Design Thinking methodology resulting in 85% user satisfaction scores',
+                    'Created digital transformation roadmaps aligning business strategy with technology investments',
+                    'Established innovation labs prototyping emerging technologies (AR/VR, Blockchain, IoT)',
+                    'Drove paperless initiatives reducing operational costs by $5M annually'
+                ]
+            },
+            'payer-provider': {
+                title: 'Payer & Provider Systems',
+                icon: 'heart-pulse',
+                color: 'rose',
+                description: 'Deep expertise in healthcare ecosystem operations, bridging the gap between payers and providers through integrated technology solutions and value-based care models.',
+                details: [
+                    'Implemented value-based care platforms integrating clinical and financial data',
+                    'Designed HIPAA-compliant interoperability solutions connecting payer and provider systems',
+                    'Led HEDIS and STAR ratings improvement programs through technology enablement',
+                    'Built provider portal solutions streamlining credentialing, contracting, and claims processes',
+                    'Optimized care management workflows reducing readmission rates by 15%'
+                ]
+            },
+            'cloud-transformation': {
+                title: 'Cloud Transformation',
+                icon: 'cloud-cog',
+                color: 'indigo',
+                description: 'Leading cloud-native migrations and modern infrastructure deployments that enhance scalability, security, and cost-efficiency while ensuring business continuity.',
+                details: [
+                    'Architected multi-cloud strategies (AWS, Azure, GCP) optimizing for cost and performance',
+                    'Led migration of 200+ applications to cloud-native architectures with zero downtime',
+                    'Implemented Infrastructure as Code (IaC) and DevSecOps practices reducing deployment time by 70%',
+                    'Designed disaster recovery solutions with RPO < 1 hour and RTO < 4 hours',
+                    'Achieved $8M annual savings through cloud optimization and reserved instance strategies'
+                ]
+            },
+            'agile-leadership': {
+                title: 'Agile Program Leadership',
+                icon: 'users',
+                color: 'cyan',
+                description: 'Empowering cross-functional teams through scaled agile frameworks, fostering innovation culture, and delivering complex enterprise programs on time and budget.',
+                details: [
+                    'Scaled Agile Framework (SAFe) coach implementing enterprise-wide agility',
+                    'Led distributed teams of 200+ across multiple time zones and vendors',
+                    'Implemented OKR frameworks aligning team objectives with strategic business goals',
+                    'Created innovation sprints and hackathons generating 50+ patentable ideas annually',
+                    'Achieved 95% on-time delivery rate through agile transformation and predictive analytics'
+                ]
+            }
+        };
+
+        // Modal functions
+        function openModal(capabilityId) {
+            const modal = document.getElementById('capability-modal');
+            const content = document.getElementById('modal-content');
+            const data = modalContent[capabilityId];
+            
+            if (!data) return;
+            
+            const iconColorClass = {
+                'blue': 'text-blue-600 bg-blue-100',
+                'purple': 'text-purple-600 bg-purple-100',
+                'emerald': 'text-emerald-600 bg-emerald-100',
+                'amber': 'text-amber-600 bg-amber-100',
+                'rose': 'text-rose-600 bg-rose-100',
+                'indigo': 'text-indigo-600 bg-indigo-100',
+                'cyan': 'text-cyan-600 bg-cyan-100'
+            }[data.color];
+            
+            content.innerHTML = `
+                <div class="sm:flex sm:items-start">
+                    <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${iconColorClass} sm:mx-0 sm:h-10 sm:w-10">
+                        <i data-lucide="${data.icon}" class="w-6 h-6"></i>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-2xl leading-6 font-bold text-gray-900 mb-4" id="modal-title">
+                            ${data.title}
+                        </h3>
+                        <div class="mt-2">
+                            <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                                ${data.description}
+                            </p>
+                            <h4 class="font-semibold text-gray-900 mb-3">Key Achievements & Capabilities:</h4>
+                            <ul class="space-y-2">
+                                ${data.details.map(detail => `
+                                    <li class="flex items-start text-gray-600">
+                                        <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"></i>
+                                        <span>${detail}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent body scroll
+            
+            // Initialize icons in modal
+            setTimeout(() => {
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('capability-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore body scroll
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', function() {
+            // Add mobile menu functionality if needed
+        });
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSkills();
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    
     </script>
 </body>
 </html>
