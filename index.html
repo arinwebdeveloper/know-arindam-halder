@@ -100,6 +100,99 @@
             color: #6b7280;
         }
 
+        /* Missing hero utility classes */
+        .hero-gradient-bg {
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #f5f3ff 100%);
+        }
+        .mesh-gradient {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .mesh-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #2563eb;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .hero-badge {
+            animation: float 6s ease-in-out infinite;
+        }
+        .profile-container {
+            position: relative;
+        }
+        .profile-ring {
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            border: 2px solid rgba(59, 130, 246, 0.25);
+            animation: spin 15s linear infinite;
+        }
+        .profile-ring:nth-child(2) {
+            inset: -24px;
+            border-color: rgba(139, 92, 246, 0.25);
+            animation-duration: 20s;
+            animation-direction: reverse;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile hero fix: allow section to grow so content isn't squished/clipped */
+        @media (max-width: 767px) {
+            #about {
+                min-height: auto !important;
+                align-items: flex-start !important;
+            }
+            #about > .container {
+                padding-top: 1.5rem;
+                padding-bottom: 2.5rem;
+            }
+            /* Prevent role text overlap by making active role take flow on mobile */
+            .role-text {
+                position: relative !important;
+                height: 0;
+                overflow: hidden;
+                opacity: 0 !important;
+                transition: opacity 0.5s ease, height 0.3s ease;
+            }
+            .role-text.active {
+                height: auto;
+                opacity: 1 !important;
+            }
+            #about .mt-10 {
+                margin-top: 1.5rem;
+            }
+            #about .pt-8 {
+                padding-top: 1.5rem;
+            }
+            #about .gap-6 {
+                gap: 0.75rem !important;
+            }
+        }
+
         /* 3D Skills Section Styles */
         .skills-3d-container {
             perspective: 2000px;
@@ -170,17 +263,6 @@
         .category-section {
             animation: fadeIn 0.6s ease-out;
             transform-style: preserve-3d;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px) rotateX(-5deg);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) rotateX(0);
-            }
         }
         
         .view-all-container {
@@ -311,7 +393,7 @@
                     </div>
                     
                     <!-- Main Heading -->
-                    <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-4 leading-tight">
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-gray-900 mb-4 leading-tight">
                         Hi, I'm <br>
                         <span class="gradient-text typing-cursor relative">
                             Arindam Halder
@@ -319,56 +401,52 @@
                     </h1>
                     
                     <!-- Role Rotator with Enhanced Styling -->
-                    <div class="text-2xl md:text-4xl text-gray-700 mb-8 h-14 relative font-light">
-                        <div class="role-text active flex items-center gap-3">
-                            <i data-lucide="trending-up" class="w-8 h-8 text-blue-600"></i>
+                    <div class="text-lg sm:text-2xl md:text-4xl text-gray-700 mb-8 min-h-[3.5rem] md:h-14 relative font-light">
+                        <div class="role-text active flex items-center justify-center gap-3">
+                            <i data-lucide="trending-up" class="w-6 h-6 md:w-8 md:h-8 text-blue-600"></i>
                             <span>Transformation Leader</span>
                         </div>
-                        <div class="role-text flex items-center gap-3">
-                            <i data-lucide="brain" class="w-8 h-8 text-purple-600"></i>
+                        <div class="role-text flex items-center justify-center gap-3">
+                            <i data-lucide="brain" class="w-6 h-6 md:w-8 md:h-8 text-purple-600"></i>
                             <span>AI Director</span>
                         </div>
-                        <div class="role-text flex items-center gap-3">
-                            <i data-lucide="lightbulb" class="w-8 h-8 text-amber-600"></i>
+                        <div class="role-text flex items-center justify-center gap-3">
+                            <i data-lucide="lightbulb" class="w-6 h-6 md:w-8 md:h-8 text-amber-600"></i>
                             <span>Design Thinker</span>
                         </div>
-                        <div class="role-text flex items-center gap-3">
-                            <i data-lucide="heart-pulse" class="w-8 h-8 text-rose-600"></i>
+                        <div class="role-text flex items-center justify-center gap-3">
+                            <i data-lucide="heart-pulse" class="w-6 h-6 md:w-8 md:h-8 text-rose-600"></i>
                             <span>Healthcare Expert</span>
                         </div>
-                        <div class="role-text flex items-center gap-3">
-                            <i data-lucide="shield-check" class="w-8 h-8 text-emerald-600"></i>
+                        <div class="role-text flex items-center justify-center gap-3">
+                            <i data-lucide="shield-check" class="w-6 h-6 md:w-8 md:h-8 text-emerald-600"></i>
                             <span>Insurance Champion</span>
                         </div>
-                        <div class="role-text flex items-center gap-3">
-                            <i data-lucide="cpu" class="w-8 h-8 text-indigo-600"></i>
+                        <div class="role-text flex items-center justify-center gap-3">
+                            <i data-lucide="cpu" class="w-6 h-6 md:w-8 md:h-8 text-indigo-600"></i>
                             <span>AI Practitioner</span>
                         </div>
                     </div>
                     
                     <!-- Description -->
-                    <p class="text-gray-600 mb-8 max-w-xl text-lg leading-relaxed">
+                    <p class="text-gray-600 mb-8 max-w-xl text-base md:text-lg leading-relaxed">
                         I lead enterprise <span class="font-semibold text-blue-700">AI and digital transformation</span> initiatives for healthcare and insurance organizations, helping them modernize data platforms, adopt generative AI, and unlock strategic value from large-scale insurance and healthcare ecosystems.
                     </p>
                     
                     <!-- CTA Buttons with Icons -->
                     <div class="flex flex-wrap gap-4">
-                        <a href="#skills" class="group inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+                        <a href="#skills" class="group inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
                             <span class="font-semibold">View My Skills</span>
                             <i data-lucide="arrow-right" class="w-5 h-5 transform group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <a href="#contact" class="group inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 px-8 py-4 rounded-xl shadow-lg border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+                        <a href="#contact" class="group inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 px-6 py-3 md:px-8 md:py-4 rounded-xl shadow-lg border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
                             <i data-lucide="mail" class="w-5 h-5 text-blue-600"></i>
                             <span class="font-semibold">Contact Me</span>
                         </a>
-                        <!--<a href="Images/arindam_halder_executive_summary 1.pdf" class="group inline-flex items-center gap-2 glass-card hover:bg-white/90 text-gray-800 px-6 py-4 rounded-xl shadow-md transition-all duration-300 transform hover:-translate-y-1">
-                            <i data-lucide="download" class="w-5 h-5 text-blue-600"></i>
-                            <span class="font-semibold">Download CV</span>
-                        </a>-->
                         <a href="Images/arindam_halder_executive_summary 1.pdf"
                             download="Arindam_Halder_Executive_Profile.pdf"
                             target="_blank"
-                            class="group inline-flex items-center gap-2 glass-card hover:bg-white/90 text-gray-800 px-6 py-4 rounded-xl shadow-md transition-all duration-300 transform hover:-translate-y-1">
+                            class="group inline-flex items-center gap-2 glass-card hover:bg-white/90 text-gray-800 px-6 py-3 md:px-6 md:py-4 rounded-xl shadow-md transition-all duration-300 transform hover:-translate-y-1">
 
                             <i data-lucide="download" class="w-5 h-5 text-blue-600"></i>
                             <span class="font-semibold">Download CV</span>
@@ -377,7 +455,7 @@
                     </div>
                     
                     <!-- Quick Stats -->
-                    <div class="flex flex-wrap gap-6 mt-10 pt-8 border-t border-gray-300/50">
+                    <div class="flex flex-wrap gap-4 md:gap-6 mt-6 md:mt-10 pt-6 md:pt-8 border-t border-gray-300/50">
                         <div class="flex items-center gap-2">
                             <div class="p-2 bg-blue-100 rounded-lg">
                                 <i data-lucide="award" class="w-5 h-5 text-blue-600"></i>
@@ -410,29 +488,8 @@
                 
                 <!-- Right Content - Profile Image -->
                 <div class="md:w-1/2 flex justify-center items-center animate-fade-in delay-100 relative">
-                    <!-- Floating Badges Around Image -->
-                    <!--<div class="absolute top-10 right-10 glass-card px-4 py-2 rounded-xl shadow-lg hero-badge z-20 hidden lg:flex items-center gap-2">
-                        <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500"></i>
-                        <span class="text-sm font-semibold text-gray-700">Available for Advisory</span>
-                    </div>-->
-                    
-                    <!--<div class="absolute bottom-20 left-0 glass-card px-4 py-2 rounded-xl shadow-lg hero-badge z-20 hidden lg:flex items-center gap-2" style="animation-delay: 1s;">
-                        <i data-lucide="globe" class="w-5 h-5 text-blue-500"></i>
-                        <span class="text-sm font-semibold text-gray-700">Global Healthcare</span>
-                    </div>-->
-                    
-                    <!--<div class="absolute top-1/2 right-0 transform translate-x-4 glass-card px-3 py-2 rounded-lg shadow-lg hero-badge z-20 hidden lg:block" style="animation-delay: 2s;">
-                        <div class="flex items-center gap-1">
-                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                            <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        </div>
-                    </div>-->
-                    
                     <!-- Profile Image Container with 3D Effect -->
-                    <div class="profile-container relative w-72 h-72 md:w-96 md:h-96 cursor-pointer">
+                    <div class="profile-container relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 cursor-pointer">
                         <!-- Animated Rings -->
                         <div class="profile-ring"></div>
                         <div class="profile-ring"></div>
@@ -462,15 +519,8 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Scroll Indicator -->
-            <!--<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-                <span class="text-xs text-gray-500 font-medium">Scroll to explore</span>
-                <i data-lucide="chevron-down" class="w-6 h-6 text-blue-600"></i>
-            </div>-->
         </section>
 
-        
         
         <!-- Skills Section -->
         <section id="skills" class="py-20 bg-gradient-to-b from-gray-50 to-white">
@@ -804,8 +854,7 @@
                             <div class="ml-8 md:ml-0 md:w-5/12 md:-mt-8">
                                 <div class="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform md:-translate-y-2 md:hover:-translate-y-4 border border-gray-100 overflow-hidden skills-card-3d">
                                     <div class="absolute inset-0 bg-gradient-to-br from-purple-50/80 to-pink-50/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                    
-                                    <div class="relative z-10">
+                                                                    <div class="relative z-10">
                                         <!-- Header -->
                                         <div class="flex items-center justify-between mb-4">
                                             <span class="px-4 py-1.5 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full text-sm font-semibold border border-purple-200">
@@ -813,10 +862,9 @@
                                             </span>
                                             <div class="md:hidden p-2 bg-purple-100 rounded-full">
                                                 <i data-lucide="lightbulb" class="w-5 h-5 text-purple-600"></i>
-                                            </div>
+ </div>
                                         </div>
-                                        
-                                        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-purple-700 transition-colors">Account Executive & AI Director</h3>
+                                                                        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-purple-700 transition-colors">Account Executive & AI Director</h3>
                                         <p class="text-purple-600 font-medium mb-4 flex items-center gap-2">
                                             <i data-lucide="building-2" class="w-4 h-4"></i>
                                             Large Global Disability & Group Insurance Company
@@ -825,16 +873,14 @@
                                         <p class="text-gray-600 leading-relaxed mb-4">
                                             Led Large Scale transformation, driven by <span class="font-semibold text-purple-700">AI, to modernize Claims, Analytics and Data Platforms for UK</span>.
                                         </p>
-                                        
-                                        <p class="text-gray-600 leading-relaxed mb-4">
+                                                                        <p class="text-gray-600 leading-relaxed mb-4">
                                             Spearheaded AI/GenAI adoption and implementation that reduced Operational costs by <span class="font-semibold text-purple-700">22%</span>.
                                         </p>
-                                        
                                         <div class="flex flex-wrap gap-2">
                                             <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-purple-700 border border-purple-200">AI Strategy</span>
                                             <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-purple-700 border border-purple-200">GenAI</span>
                                             <span class="text-xs px-3 py-1 bg-white/80 rounded-full text-purple-700 border border-purple-200">Cost Optimization</span>
-                                        </div>
+ </div>
                                     </div>
                                 </div>
                             </div>
@@ -866,7 +912,6 @@
                                             <i data-lucide="hospital" class="w-4 h-4"></i>
                                             Large US Network Hospital System
                                         </p>
-                                        
                                         <p class="text-gray-600 leading-relaxed mb-4">
                                             Led digital transformation across <span class="font-semibold text-blue-700">25 hospitals</span>, resulting in <span class="font-semibold text-blue-700">30% operational efficiency</span> gains and significantly improved patient outcomes.
                                         </p>
@@ -1107,7 +1152,7 @@
                             <!-- Header with Icon -->
                             <div class="flex items-start gap-4 mb-6">
                                 <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                    <i data-lucide="badge-check" class="w-8 h-8 text-amber-700"></i>
+ <i data-lucide="badge-check" class="w-8 h-8 text-amber-700"></i>
                                 </div>
                                 <div class="flex-1">
                                     <span class="inline-block px-4 py-1.5 bg-gradient-to-r from-amber-100 to-orange-100 text-amber-700 rounded-full text-sm font-semibold border border-amber-200 mb-2">
@@ -1157,11 +1202,6 @@
                 </div>
             </div>
         </section>
-        
-        
-        
-        
-
         <!-- Blog Section -->
         <section id="blog" class="section py-20 bg-gray-50">
             <div class="container mx-auto px-6">
@@ -1212,7 +1252,7 @@
                                 Welcome to the world of fractals—nature's way of blending beauty with complexity—and their transformative role in healthcare.
                             </p>
                             <a href="https://www.linkedin.com/pulse/fractals-medicine-unlocking-natures-patterns-arindam-halder-jyp8f/?trackingId=G%2FF%2FNwo%2FTCyOY072Vy%2F8qA%3D%3D" class="text-blue-600 hover:text-blue-800 font-medium" target="_blank" rel="noopener noreferrer">
-                                Read More →
+ Read More →
                             </a>
                         </div>
                     </div>
@@ -1325,8 +1365,7 @@
                             
                             <div>
                                 <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                                <textarea id="message" rows="5" 
-                                          class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"></textarea>
                             </div>
                             
                             <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-md transition">
@@ -1558,12 +1597,19 @@
     
         // Categorized Skills Data - Based on your 30 skills
         const skillsData = {
-            industry: [
+            /*industry: [
                 "AI Policy, Governance, and Regulation",
                 "AI for Healthcare",
                 "Business Intelligence",
                 "Data Warehousing",
                 "Customer Engagement"
+            ],*/
+            industry: [
+                "Healthcare Payer & Provider Transformation",
+                "Life, Group & Specialty Insurance",
+                "AI, Data & Decision Intelligence",
+                "Enterprise Growth & Strategic Client Partnership",
+                "Executive Advisory & Digital Transformation"
             ],
             technology: [
                 "Cloud-Native Architecture",
@@ -1695,7 +1741,7 @@
                 color: 'emerald',
                 description: 'Building modern, cloud-native data ecosystems that unlock the value of healthcare data while ensuring interoperability, security, and real-time analytics capabilities.',
                 details: [
-                    'Architected FHIR-based data lakes integrating EHR, claims, and IoT data sources',
+ 'Architected FHIR-based data lakes integrating EHR, claims, and IoT data sources',
                     'Implemented real-time streaming analytics platforms processing 10M+ events daily',
                     'Designed Master Data Management (MDM) solutions for patient and provider identity resolution',
                     'Built data quality frameworks ensuring 99.9% accuracy for clinical decision support',
@@ -1721,7 +1767,7 @@
                 color: 'rose',
                 description: 'Deep expertise in healthcare ecosystem operations, bridging the gap between payers and providers through integrated technology solutions and value-based care models.',
                 details: [
-                    'Implemented value-based care platforms integrating clinical and financial data',
+ 'Implemented value-based care platforms integrating clinical and financial data',
                     'Designed HIPAA-compliant interoperability solutions connecting payer and provider systems',
                     'Led HEDIS and STAR ratings improvement programs through technology enablement',
                     'Built provider portal solutions streamlining credentialing, contracting, and claims processes',
@@ -1747,7 +1793,7 @@
                 color: 'cyan',
                 description: 'Empowering cross-functional teams through scaled agile frameworks, fostering innovation culture, and delivering complex enterprise programs on time and budget.',
                 details: [
-                    'Scaled Agile Framework (SAFe) coach implementing enterprise-wide agility',
+ 'Scaled Agile Framework (SAFe) coach implementing enterprise-wide agility',
                     'Led distributed teams of 200+ across multiple time zones and vendors',
                     'Implemented OKR frameworks aligning team objectives with strategic business goals',
                     'Created innovation sprints and hackathons generating 50+ patentable ideas annually',
